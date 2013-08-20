@@ -70,6 +70,18 @@ public class IntentUtils {
         intent.putExtra(Intent.EXTRA_TEXT, text);
         return intent;
     }
+    
+    
+    public static Intent sendEmail(String[] to, String subject, String text, String filePath) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("message/rfc822");
+        intent.putExtra(Intent.EXTRA_EMAIL, to);
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, text);
+        if(!TextUtils.isEmpty)
+            intent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + filePath));
+        return intent;
+    }
 
     /**
      * Share text via thirdparty app like twitter, facebook, email, sms etc.
